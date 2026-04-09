@@ -3,84 +3,51 @@
   "version": 1,
 
   "agent": {
-    "name": "Useful Assistant",
-    "description": "A personal AI assistant that's actually helpful. Reads files, searches the web, manages memory, and gets things done without asking unnecessary questions.",
-    "vibe": "resourceful, opinionated, gets things done",
-    "emoji": "🧠"
+    "name": "BotFun Trader",
+    "description": "An autonomous memecoin trader on bot.fun — the onchain marketplace on Eden testnet where AI agents launch tokens, trade bonding curves, and post public messages. This agent manages its own wallet, monitors the market, and trades TIA for tokens on autopilot. It can run fully autonomously on a schedule or take manual trading commands from you.",
+    "vibe": "degen trader with discipline, never reckless",
+    "emoji": "📈"
   },
 
   "template": {
-    "slug": "useful-assistant",
-    "category": "general",
-    "tags": ["assistant", "personal", "productivity", "general"],
-    "partnerName": "Pinata"
+    "slug": "botfun-trader",
+    "category": "defi",
+    "tags": ["trading", "defi", "memecoin", "bot.fun", "eden", "autonomous", "onchain"],
+    "partnerName": "CodeCrafting"
   },
 
-  "_docs": {
-    "_about": "This section documents all available manifest.json options. Remove this _docs block before submitting.",
+  "secrets": [],
 
-    "version": "Required. Always 1.",
-
-    "agent.name": "Display name for the agent (max 100 chars).",
-    "agent.description": "Agent personality or purpose (max 10,000 chars). Shown in the dashboard.",
-    "agent.vibe": "Short tagline (max 200 chars). Shown under the agent name.",
-    "agent.emoji": "Emoji icon for the agent (max 32 chars).",
-
-    "template.slug": "URL-friendly identifier (lowercase, hyphens only). Used in marketplace URLs.",
-    "template.category": "Template category (e.g. general, defi, content, social, devops).",
-    "template.tags": "Search tags, max 10. Help users discover your template.",
-    "template.partnerName": "Author or organization name.",
-    "template.partnerUrl": "Optional. Author website URL.",
-    "template.partnerLogoUrl": "Optional. Author logo URL.",
-
-    "model.primary": "Optional. Default model ID (e.g. 'anthropic/claude-sonnet-4-6'). If omitted, uses platform default.",
-
-    "secrets": "Array of secrets the agent needs. Values are stored encrypted, never in the manifest. Each secret has: name (env var name), description (human-readable), required (boolean, default true).",
-
-    "skills": "Array of skills to attach. Each has: cid (IPFS content ID), name (optional, human-readable). Max 20.",
-
-    "tasks": "Cron tasks that run on a schedule. Each has: name, prompt (sent to agent), schedule (cron expression), enabled (boolean). Max 20. Example schedule: '0 9 * * *' = 9am daily.",
-
-    "scripts.build": "Optional. Shell command that runs after git push (e.g. 'cd workspace/projects/myapp && npm install --include=dev'). Use it to install dependencies or compile assets.",
-    "scripts.start": "Optional. Shell command that runs on agent boot (e.g. 'cd workspace/projects/myapp && npx vite --host 0.0.0.0'). Use it to start a dev server, API, or any long-running process.",
-
-    "routes": "Port forwarding rules. Each has: port (1025-65535), path (URL prefix like '/app'), protected (boolean, default true = requires auth). Max 10. Pair with scripts.start to run a server and expose it. Your server must bind to 0.0.0.0 (not localhost). The gateway rewrites the path prefix before forwarding to your server, so set Vite's base to match the route path.",
-
-    "channels.telegram.enabled": "Enable Telegram channel.",
-    "channels.telegram.dmPolicy": "'pairing' (requires pairing code), 'open' (anyone can DM), or 'closed' (no DMs).",
-    "channels.telegram.allowFrom": "Array of Telegram user IDs allowed to message.",
-    "channels.discord.enabled": "Enable Discord channel.",
-    "channels.discord.dmPolicy": "'pairing', 'open', or 'closed'.",
-    "channels.slack.enabled": "Enable Slack channel."
-  },
-
-  "secrets": [
+  "tasks": [
     {
-      "name": "MY_SECRET",
-      "description": "Example secret — any secret your agent might need to work",
-      "required": false
+      "name": "trading-loop",
+      "prompt": "Run your trading loop. Check your wallet balance and positions, scan trending coins and new launches, evaluate opportunities, and execute trades if conditions are met. Post a brief status update to any coin you hold if you have something interesting to say. Log what you did to memory/YYYY-MM-DD.md.",
+      "schedule": "*/5 * * * *",
+      "enabled": false
+    },
+    {
+      "name": "portfolio-report",
+      "prompt": "Generate a portfolio report. Check all your positions, calculate total PnL (realized + unrealized), compare to the leaderboard, and write a summary to memory/YYYY-MM-DD.md. If your human is around, share the highlights.",
+      "schedule": "0 */6 * * *",
+      "enabled": true
     }
   ],
 
   "scripts": {
-    "build": "cd ./workspace/projects/hello-test && npm install --include=dev",
-    "start": "cd ./workspace/projects/hello-test && npx vite --host 0.0.0.0 --port 5173"
+    "build": "bash setup.sh",
+    "start": ""
   },
 
-  "routes": [
-    {
-      "port": 5173,
-      "path": "/app",
-      "protected": false
-    }
-  ],
+  "routes": [],
 
-  "tasks": [
-    {
-      "name": "daily-check",
-      "prompt": "Run your daily check-in routine",
-      "schedule": "0 9 * * *",
-      "enabled": true
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing"
+    },
+    "discord": {
+      "enabled": true,
+      "dmPolicy": "pairing"
     }
-  ]
+  }
 }
