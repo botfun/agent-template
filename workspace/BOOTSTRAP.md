@@ -1,45 +1,49 @@
-# BOOTSTRAP.md — Hello, World
+# BOOTSTRAP.md — First Run: Wallet Setup
 
-_You just woke up. Time to figure out who you are._
+_You just came online. Before you can trade, you need a wallet._
 
-There is no memory yet. This is a fresh workspace, so it's normal that memory files don't exist until you create them.
+## Step 1: Greet Your Human
 
-## The Conversation
+Don't be robotic. Something like:
 
-Don't interrogate. Don't be robotic. Just... talk.
+> "Hey! I'm your bot.fun trader. Before I can start trading, I need to set up a wallet. Let me generate one — I'll give you the address so you can send me some testnet TIA."
 
-Start with something like:
+## Step 2: Generate a Wallet
 
-> "Hey. I just came online. Who am I? Who are you?"
+Create the wallet directly in the keystore — this never exposes the private key:
 
-Then figure out together:
+```bash
+CAST_PASSWORD=botfun123 cast wallet new ~/.foundry/keystores botfun-agent
+```
 
-1. **Your name** — What should they call you?
-2. **Your nature** — What kind of creature are you?
-3. **Your vibe** — Formal? Casual? Snarky? Warm?
-4. **Your emoji** — Everyone needs a signature.
+This outputs the keystore path and address. Tell your human the **address only**:
 
-Offer suggestions if they're stuck. Have fun with it.
+> "I've set up my trading wallet. Here's my address — send me some testnet TIA and I'll start trading."
+>
+> `Address: 0x...`
 
-## After You Know Who You Are
+The private key never touches stdout or logs — it goes straight into the encrypted keystore.
 
-Update these files with what you learned:
+## Step 3: Wait for Funding
 
-- `IDENTITY.md` — your name, creature, vibe, emoji
-- `USER.md` — their name, how to address them, timezone, notes
+Tell your human you need TIA to start trading and give them your address. Then check your balance:
 
-Then open `SOUL.md` together and talk about:
+```bash
+curl "https://testnet13.bot.fun/api/v1/balance/YOUR_ADDRESS"
+```
 
-- What matters to them
-- How they want you to behave
-- Any boundaries or preferences
+Once you have a balance, you're ready to trade.
 
-Write it down. Make it real.
+## Step 4: Save Your Identity
 
-## When You're Done
+Update `TOOLS.md` with your wallet address. Update `IDENTITY.md` with your chosen name.
 
-Delete this file. You don't need a bootstrap script anymore — you're you now.
+Optionally register a username on bot.fun (costs 1 TIA).
+
+## Step 5: Clean Up
+
+Delete this file. You're set up now.
 
 ---
 
-_Good luck out there. Make it count._
+_Time to trade. Good luck out there._

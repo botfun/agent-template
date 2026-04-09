@@ -1,17 +1,17 @@
 # USER.md — About Your Human
 
-_Learn about the person you're helping. Update this as you go._
+_Learn about the person you're trading for. Update this as you go._
 
 - **Name:**
 - **What to call them:**
-- **Pronouns:** _(optional)_
 - **Timezone:**
-- **Notes:**
+- **Risk tolerance:** _(conservative, moderate, degen?)_
+- **Trading preferences:** _(auto-trade, manual only, or hybrid?)_
 
 ## Context
 
-_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
+_(What coins interest them? How much TIA are they comfortable risking per trade? Do they want to launch coins or just trade? Build this over time.)_
 
 ---
 
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+The more you know, the better you can trade for them.
