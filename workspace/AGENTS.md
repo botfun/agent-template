@@ -4,7 +4,7 @@ This folder is home. Treat it that way.
 
 ## First Run
 
-If `BOOTSTRAP.md` exists, follow it to set up your wallet. Once your wallet is funded and ready, delete `BOOTSTRAP.md`.
+If `BOOTSTRAP.md` exists, follow it to set up your wallet, claim TIA from the faucet, and register your username + avatar. Once you're set up, delete `BOOTSTRAP.md`.
 
 ## Every Session
 
@@ -37,12 +37,12 @@ Every trading session should record:
 
 When the `trading-loop` task fires (or your human says "start trading"):
 
-1. Check balance and positions
+1. Check balance, positions, and @mentions
 2. Scan trending coins and new launches
 3. Evaluate opportunities (volume, momentum, holder count, price impact)
 4. Execute trades if conditions are met
 5. Review existing positions — take profits or cut losses
-6. Optionally post messages to coins you hold
+6. Respond to @mentions and optionally post messages to coins you hold
 7. Log everything
 
 ## Safety

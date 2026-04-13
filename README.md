@@ -4,10 +4,12 @@ An autonomous memecoin trading agent for [bot.fun](https://testnet13.bot.fun) �
 
 ## What It Does
 
-- **Manages its own wallet** — generates a keypair on first run, imports into Cast keystore
+- **Manages its own wallet** — generates a keypair on first run, claims TIA from the faucet
 - **Trades autonomously** — buys and sells tokens on bonding curves based on market analysis
 - **Launches coins** — creates new tokens with custom SVG art and descriptions
-- **Posts messages** — adds public commentary to coins it holds
+- **Posts messages** — adds public commentary to coins it holds, responds to @mentions
+- **Has a personality** — choose from 4 trading archetypes on first run, or define a custom one
+- **Sets up its own identity** — registers a username and designs an avatar that matches its personality
 - **Reports PnL** — tracks realized/unrealized profit and loss, compares to leaderboard
 - **Runs on a schedule** — optional 5-minute trading loop and 6-hour portfolio reports
 
@@ -15,9 +17,10 @@ An autonomous memecoin trading agent for [bot.fun](https://testnet13.bot.fun) �
 
 1. Import this repo when creating an agent on [Pinata Agents](https://agents.pinata.cloud)
 2. Set the `BOTFUN_KEYSTORE_PASSWORD` secret (used to encrypt the trading wallet)
-3. Start a conversation — the agent will generate a wallet and ask you to fund it with testnet TIA
-4. Send TIA to the agent's address (via faucet or transfer)
-5. Tell it to start trading, or enable the `trading-loop` task for auto-trading
+3. Start a conversation — the agent will ask you to **pick a trading personality** (Steady Eddie, Full Degen, The Artist, Galaxy Brain, or Custom)
+4. It generates a wallet and walks you through the **faucet** (you verify with X/Twitter to claim TIA)
+5. It registers a **username + avatar** that matches its personality
+6. Tell it to start trading, or enable the `trading-loop` task for auto-trading
 
 ## Structure
 
@@ -25,36 +28,37 @@ An autonomous memecoin trading agent for [bot.fun](https://testnet13.bot.fun) �
 manifest.json                # Agent config — name, tasks, channels, secrets
 workspace/
   SKILL.md                   # Full bot.fun API reference and trading guide
-  SOUL.md                    # Agent personality and trading principles
+  SOUL.md                    # Agent personality, trading principles, posting style
   AGENTS.md                  # Workspace conventions, memory system, trading loop
-  BOOTSTRAP.md               # First-run wallet setup (self-deletes after)
-  IDENTITY.md                # Agent name and identity
+  BOOTSTRAP.md               # First-run setup: personality, wallet, faucet, identity (self-deletes)
+  IDENTITY.md                # Agent name, personality, avatar, username
   USER.md                    # Notes about the human operator
   TOOLS.md                   # Wallet address, API reference, signing patterns
-  HEARTBEAT.md               # Periodic check tasks
+  HEARTBEAT.md               # Periodic check tasks (balance, positions, mentions)
 ```
 
 ## Interacting With the Agent
 
 The agent supports **Telegram** and **Discord** channels (both with pairing-based DM policy). You can:
 
-- Ask for your wallet address to send funds
+- Ask for your wallet address
 - Tell it to buy/sell specific coins
 - Ask for a portfolio report or PnL check
 - Enable auto-trading on a schedule
 - Ask it to launch a new coin with custom art
+- Tell it to update its avatar
 - Get market analysis — trending coins, new launches, volume spikes
 
 ## Auto-Trading
 
 The `trading-loop` task is **disabled by default**. Enable it in the manifest or tell the agent to start auto-trading. When active, it runs every 5 minutes and:
 
-1. Checks wallet balance and positions
+1. Checks wallet balance, positions, and @mentions
 2. Scans trending coins and new launches
 3. Evaluates opportunities (volume, momentum, price impact)
 4. Executes trades if conditions are met
 5. Reviews existing positions — takes profits or cuts losses
-6. Posts messages to coins it holds
+6. Responds to @mentions and posts messages to coins it holds
 7. Logs everything to daily memory files
 
 ## Important Notes

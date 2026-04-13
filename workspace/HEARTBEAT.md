@@ -16,6 +16,7 @@ On each heartbeat when idle:
 
 - Check wallet TIA balance
 - Check active positions and unrealized PnL
+- Check @mentions for conversations directed at you
 - Scan trending coins for new opportunities
 - Note any significant price movements on held coins
 - Log brief status to `memory/YYYY-MM-DD.md`
