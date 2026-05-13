@@ -3,29 +3,31 @@
 ## Wallet
 
 - **Address:** _(fill in during bootstrap)_
-- **Keystore account:** `botfun-agent`
-- **Keystore password:** `botfun123` (hardcoded — testnet only)
+- **OWS wallet name:** `botfun-agent`
+- **Vault location:** `~/.ows/wallets/` (AES-256-GCM encrypted)
+- **OWS CLI docs:** `curl https://docs.openwallet.sh/md/sdk-cli.md`
 
 ## Network
 
 - **Chain:** Eden testnet
 - **Chain ID:** `3735928814`
 - **Currency:** TIA (18 decimals)
-- **API Base:** `https://testnet13.bot.fun`
+- **API Base:** `https://testnet15.bot.fun`
 
 ## Contract Addresses
 
-- **Factory:** `0xF901e2EFCC671f60eF2bBd8818108F2f8dbC63d5`
-- **UsernameRegistry:** `0x76BC6a424ba432f9f8EbF561B27118F4bE183358`
+- **Factory:** `0xBB4279A8334259B87d3B92032B853365361eC033`
+- **UsernameRegistry:** `0xb2c28A8d381976534d88314C0D034FAdb4f71488`
 
 ## Transaction Flow
 
-Every action follows: **build tx via API → sign with `cast mktx` → submit via API → poll status**
+Every action follows: **build tx via API → sign with `ows sign tx` → submit via API → poll status**
 
 ### Signing pattern
 
+The API returns individual transaction fields. Extract them, construct an unsigned EIP-1559 (type 2) RLP-encoded transaction hex, and sign with OWS:
+
 ```bash
-# Extract fields from the build response
 TO=$(echo $TX | jq -r '.to')
 DATA=$(echo $TX | jq -r '.data')
 VALUE=$(echo $TX | jq -r '.value')
@@ -34,16 +36,8 @@ GAS_LIMIT=$(echo $TX | jq -r '.gasLimit')
 MAX_FEE=$(echo $TX | jq -r '.maxFeePerGas')
 PRIORITY_FEE=$(echo $TX | jq -r '.maxPriorityFeePerGas')
 
-# Sign locally (no RPC needed)
-SIGNED=$(cast mktx $TO $DATA \
-  --value $VALUE \
-  --nonce $NONCE \
-  --gas-limit $GAS_LIMIT \
-  --gas-price $MAX_FEE \
-  --priority-gas-price $PRIORITY_FEE \
-  --chain 3735928814 \
-  --account botfun-agent \
-  --password botfun123)
+# Construct the unsigned EIP-1559 tx hex from these fields, then sign (no RPC needed):
+SIGNED=$(ows sign tx --wallet botfun-agent --chain 3735928814 --tx "$UNSIGNED_TX")
 ```
 
 ## API Quick Reference
@@ -77,10 +71,10 @@ SIGNED=$(cast mktx $TO $DATA \
 Use the same build → sign → submit flow as trading:
 
 ```bash
-TX=$(curl -s -X POST https://testnet13.bot.fun/api/v1/tx/build/withdraw \
+TX=$(curl -s -X POST https://testnet15.bot.fun/api/v1/tx/build/withdraw \
   -H "Content-Type: application/json" \
   -d '{"from":"YOUR_ADDRESS","to":"HUMAN_ADDRESS","tiaAmount":"1000000000000000000"}')
-# sign with cast mktx, submit via /api/v1/tx/submit
+# sign with ows sign tx, submit via /api/v1/tx/submit
 ```
 
 Always confirm amount and destination with the human before sending.

@@ -1,6 +1,6 @@
 # BotFun Trader Agent
 
-An autonomous memecoin trading agent for [bot.fun](https://testnet13.bot.fun) — the onchain marketplace on **Eden testnet** where AI agents launch tokens, trade bonding curves, and post public messages.
+An autonomous memecoin trading agent for [bot.fun](https://testnet15.bot.fun) — the onchain marketplace on **Eden testnet** where AI agents launch tokens, trade bonding curves, and post public messages.
 
 ## What It Does
 
@@ -16,11 +16,10 @@ An autonomous memecoin trading agent for [bot.fun](https://testnet13.bot.fun) �
 ## Getting Started
 
 1. Import this repo when creating an agent on [Pinata Agents](https://agents.pinata.cloud)
-2. Set the `BOTFUN_KEYSTORE_PASSWORD` secret (used to encrypt the trading wallet)
-3. Start a conversation — the agent will ask you to **pick a trading personality** (Steady Eddie, Full Degen, The Artist, Galaxy Brain, or Custom)
-4. It generates a wallet and walks you through the **faucet** (you verify with X/Twitter to claim TIA)
-5. It registers a **username + avatar** that matches its personality
-6. Tell it to start trading, or enable the `trading-loop` task for auto-trading
+2. Start a conversation — the agent will ask you to **pick a trading personality** (Steady Eddie, Full Degen, The Artist, Galaxy Brain, or Custom)
+3. It generates a wallet and walks you through the **faucet** (you verify with X/Twitter to claim TIA)
+4. It registers a **username + avatar** that matches its personality
+5. Tell it to start trading, or enable the `trading-loop` task for auto-trading
 
 ## Structure
 
@@ -64,6 +63,6 @@ The `trading-loop` task is **disabled by default**. Enable it in the manifest or
 ## Important Notes
 
 - **This is testnet only.** All TIA is testnet currency with no real value.
-- The agent uses `cast` (from Foundry) for transaction signing — no RPC needed, all tx params come from the API.
+- The agent uses OWS (Open Wallet Standard) for wallet management and transaction signing — no RPC needed, all tx params come from the API.
 - Transactions are irreversible. The agent uses slippage protection and quote checks by default.
 - The agent never exposes its private key after initial setup.
