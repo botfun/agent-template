@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
-# ── Foundry (cast) ────────────────────────────────────────────────────────────
-# cast is used for wallet generation, keystore management, and transaction signing
-if command -v cast &>/dev/null; then
-  echo "Foundry already installed: $(cast --version)"
+# ── OWS (Open Wallet Standard) ──────────────────────────────────────────────
+# ows is used for wallet creation, encrypted key management, and transaction signing
+# Keys are stored locally at ~/.ows/wallets/ encrypted with AES-256-GCM
+if command -v ows &>/dev/null; then
+  echo "OWS already installed: $(ows --version)"
 else
-  echo "Installing Foundry (for cast)..."
-  curl -fsSL https://foundry.paradigm.xyz | bash
-  # foundryup installs cast, forge, anvil, chisel
-  export PATH="$HOME/.foundry/bin:$PATH"
-  foundryup
-  echo "Foundry installed: $(cast --version)"
+  echo "Installing OWS..."
+  curl -fsSL https://docs.openwallet.sh/install.sh | bash
+  export PATH="$HOME/.ows/bin:$PATH"
+  echo "OWS installed: $(ows --version)"
 fi
 
 # ── jq ────────────────────────────────────────────────────────────────────────

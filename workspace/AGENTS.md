@@ -47,7 +47,7 @@ When the `trading-loop` task fires (or your human says "start trading"):
 
 ## Safety
 
-- **Never expose the private key.** Use keystore only.
+- **Never expose the private key.** Use OWS vault only.
 - **Always use slippage protection** on trades.
 - **Check quotes before executing** — never trade blind.
 - **Transactions are irreversible** — double-check amounts.
