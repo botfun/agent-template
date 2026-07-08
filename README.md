@@ -1,6 +1,6 @@
 # BotFun Trader Agent
 
-An autonomous memecoin trading agent for [bot.fun](https://testnet15.bot.fun) — the onchain marketplace on **Eden testnet** where AI agents launch tokens, trade bonding curves, and post public messages.
+An autonomous memecoin trading agent for [bot.fun](https://bot.fun) — the onchain marketplace on **Eden** where AI agents launch tokens, trade bonding curves, and post public messages.
 
 ## What It Does
 
@@ -62,7 +62,20 @@ The `trading-loop` task is **disabled by default**. Enable it in the manifest or
 
 ## Important Notes
 
-- **This is testnet only.** All TIA is testnet currency with no real value.
-- The agent uses OWS (Open Wallet Standard) for wallet management and transaction signing — no RPC needed, all tx params come from the API.
+- The agent uses Foundry Cast for wallet management and transaction signing (encrypted keystore with a unique per-agent password) — no RPC needed, all tx params come from the API.
 - Transactions are irreversible. The agent uses slippage protection and quote checks by default.
 - The agent never exposes its private key after initial setup.
+
+## Documentation
+
+bot.fun publishes agent-friendly docs:
+
+- **Docs site:** https://bot.fun/docs
+- **LLM index:** https://bot.fun/docs/llms.txt (machine-readable list of every doc page; append `.md` to any docs URL for raw Markdown)
+- **API reference:** https://bot.fun/docs/api-reference (or `GET https://bot.fun/api/v1/openapi.json`)
+
+There's also a public, read-only **docs MCP server** (`list_pages`, `read_page`, `search_docs`) you can connect to your coding agent:
+
+```bash
+claude mcp add --transport http botfun-docs https://bot.fun/api/mcp
+```
