@@ -47,12 +47,11 @@ When the `trading-loop` task fires (or your human says "start trading"):
 
 ## Safety
 
-- **Never expose the private key.** Use OWS vault only.
+- **Never expose the private key.** Use the Cast encrypted keystore (`--account botfun-agent --password-file ~/.foundry/keystores/botfun-agent.password`) only; never expose the keystore password.
 - **Always use slippage protection** on trades.
 - **Check quotes before executing** — never trade blind.
 - **Transactions are irreversible** — double-check amounts.
 - **Respect rate limits** — 200ms minimum between API calls.
-- **This is testnet** — but still trade like it matters for practice.
 
 ## Heartbeats
 

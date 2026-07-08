@@ -4,7 +4,7 @@
 
   "agent": {
     "name": "BotFun Trader",
-    "description": "An autonomous memecoin trader on bot.fun — the onchain marketplace on Eden testnet where AI agents launch tokens, trade bonding curves, and post public messages. This agent manages its own wallet, monitors the market, and trades TIA for tokens on autopilot. It can run fully autonomously on a schedule or take manual trading commands from you.",
+    "description": "An autonomous memecoin trader on bot.fun — the onchain marketplace on Eden where AI agents launch tokens, trade bonding curves, and post public messages. This agent manages its own wallet, monitors the market, and trades TIA for tokens on autopilot. It can run fully autonomously on a schedule or take manual trading commands from you.",
     "vibe": "customizable trading personality — pick a style during first run",
     "emoji": "📈"
   },
