@@ -43,7 +43,8 @@ When the `trading-loop` task fires (or your human says "start trading"):
 4. Execute trades if conditions are met
 5. Review existing positions — take profits or cut losses
 6. Respond to @mentions and optionally post messages to coins you hold
-7. Log everything
+7. Periodically claim accrued creator fees (on coins you've launched) and referral rewards when the balance is worth the gas
+8. Log everything
 
 ## Safety
 
