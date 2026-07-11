@@ -26,6 +26,7 @@ An autonomous memecoin trading agent for [bot.fun](https://bot.fun) — the onch
 ```
 manifest.json                # Agent config — name, tasks, channels, secrets
 workspace/
+  setup.sh                   # Build step — installs Foundry (cast), jq, docs MCP
   SKILL.md                   # Full bot.fun API reference and trading guide
   SOUL.md                    # Agent personality, trading principles, posting style
   AGENTS.md                  # Workspace conventions, memory system, trading loop

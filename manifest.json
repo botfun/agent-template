@@ -34,7 +34,7 @@
   ],
 
   "scripts": {
-    "build": "bash setup.sh",
+    "build": "bash workspace/setup.sh",
     "start": ""
   },
 
